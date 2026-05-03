@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 
 // 👉 여기 너 MongoDB 주소 넣기
-const MONGO_URI = "mongodb+srv://Admin:O2pg15TS0lp66mYs@cluster0.xxxxx.mongodb.net/morphna";
+const MONGO_URI = "mongodb+srv://Admin:O2pg15TS0lp66mYs@cluster0.1dejeim.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log("MongoDB 연결 성공"))
