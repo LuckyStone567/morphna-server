@@ -20,9 +20,9 @@ const ItemSchema = new mongoose.Schema({
   price: Number,
   img: String,
   category: String,
+  description: String,
   createdAt: { type: Date, default: Date.now }
 });
-
 const Item = mongoose.model("Item", ItemSchema);
 
 // 전체 게시글 가져오기
