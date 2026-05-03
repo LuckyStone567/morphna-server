@@ -31,6 +31,10 @@ app.get("/items", async (req, res) => {
   res.json(items);
 });
 
+app.delete("/items/:id", async (req, res) => {
+  await Item.findByIdAndDelete(req.params.id);
+  res.json({ message: "삭제 완료" });
+});
 // 게시글 등록
 app.post("/items", async (req, res) => {
   const item = new Item(req.body);
