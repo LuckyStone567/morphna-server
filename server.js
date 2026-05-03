@@ -2,20 +2,35 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 
 let items = [];
 
-// 전체 게시글 가져오기
+app.get("/", (req, res) => {
+  res.send("Morphna server is running");
+});
+
 app.get("/items", (req, res) => {
   res.json(items);
 });
 
-// 게시글 등록
 app.post("/items", (req, res) => {
-  items.unshift(req.body);
-  res.send("ok");
+  const item = {
+    id: Date.now(),
+    title: req.body.title,
+    price: req.body.price,
+    img: req.body.img,
+    category: req.body.category
+  };
+
+  items.unshift(item);
+  res.json(item);
 });
 
-app.listen(3000, () => console.log("서버 실행중"));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("server running on port " + PORT);
+});
